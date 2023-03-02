@@ -48,7 +48,7 @@ pipeline {
     stage ("Pull image and run docker") {
       steps {
         sh '''ssh root@158.160.61.235 << EOF
-        docker login -u grandhustla -p Ublpbycrbq220419911! docker.io
+        docker login -u *********** -p ******************** docker.io
         docker pull grandhustla/homework11-project:1.0.0
         docker run -d -p 8888:8080 grandhustla/homework11-project:1.0.0
         '''
