@@ -2,6 +2,7 @@ pipeline {
   agent {
     docker {
       image 'grandhustla/homework11-buildcontainer:1.0.0'
+      args '--privileged -v /var/run/docker.sock:/var/run/docker.sock -v /root:/root -u root'
     }
   }
 
