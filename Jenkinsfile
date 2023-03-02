@@ -22,7 +22,7 @@ pipeline {
     stage ('Create docker container with a .war file BoxFuse app') {
       steps {
         sh 'docker build -t grandhustla/homework11-project:1.0.0 -f Dockerfile .'
-         withDockerRegistry (credentialsId: '05bf862a-02f3-45ed-b162-111eb8087b2d', url: 'https://index.docker.io/v1/') {
+         withDockerRegistry(credentialsId: '62d1263a-54b8-467a-8e76-002cc88115e9', url: 'https://index.docker.io/v1/') {
             sh 'docker push grandhustla/homework11-project:1.0.0'
           }
       }
@@ -30,11 +30,13 @@ pipeline {
 
     stage ('Run docker on new VM') {
       steps {
-        sh 'ssh root@158.160.61.70'
-        withDockerRegistry (credentialsId: '05bf862a-02f3-45ed-b162-111eb8087b2d', url: 'https://index.docker.io/v1/') {
-          sh 'docker pull grandhustla/homework11-project:1.0.0'
+        sshagent(['322d5d2b-7900-4fdd-8035-0f83c6826a11']) {
+          sh 'ssh root@158.160.61.70'
+          withDockerRegistry(credentialsId: '62d1263a-54b8-467a-8e76-002cc88115e9', url: 'https://index.docker.io/v1/') {
+            sh 'docker pull grandhustla/homework11-project:1.0.0'
+          }
+          sh 'docker run -d grandhustla/homework11-project:1.0.0'
         }
-      sh 'docker run -d -p 8888:8080 grandhustla/homework11-project'
       }
     }
   }
