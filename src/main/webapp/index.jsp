@@ -6,6 +6,9 @@
 <h1>Congratulations!</h1>
 <img src="boxfuse.png">
 
+<h2>HELLO! HELLO! HELLO!</h2>
+<h2>EVGENIY GIDZINSKIY!</h2>
+<h2>YOU HAVE SUCCESSFULLY PASSED THE HOMEWORK11!</h2>
 <h2>You have successfully launched your Instance!</h2>
 
 <p>This Instance is running on <strong><%= System.getenv("BOXFUSE_PLATFORM_NAME") %>

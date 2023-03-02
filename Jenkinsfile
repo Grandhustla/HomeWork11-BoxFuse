@@ -28,15 +28,30 @@ pipeline {
       }
     }
 
-    stage ('Run docker on new VM') {
+//     stage ('Run docker on new VM') {
+//       steps {
+//         sshagent(['322d5d2b-7900-4fdd-8035-0f83c6826a11']) {
+//           sh 'ssh root@158.160.61.235'
+//           withDockerRegistry(credentialsId: '62d1263a-54b8-467a-8e76-002cc88115e9', url: 'https://index.docker.io/v1/') {
+//             sh 'docker pull grandhustla/homework11-project:1.0.0'
+//           }
+//           sh 'docker run -d grandhustla/homework11-project:1.0.0'
+//         }
+//       }
+//     }
+//     stage ('Connect to VM') {
+//       steps {
+//         sh 'ssh root@158.160.61.235'
+//       }
+//     }
+
+    stage ("Pull image and run docker") {
       steps {
-        sshagent(['322d5d2b-7900-4fdd-8035-0f83c6826a11']) {
-          sh 'ssh root@158.160.61.70'
-          withDockerRegistry(credentialsId: '62d1263a-54b8-467a-8e76-002cc88115e9', url: 'https://index.docker.io/v1/') {
-            sh 'docker pull grandhustla/homework11-project:1.0.0'
-          }
-          sh 'docker run -d grandhustla/homework11-project:1.0.0'
-        }
+        sh '''ssh root@158.160.61.235
+        docker login -u grandhustla -p Ublpbycrbq220419911! docker.io
+        docker pull grandhustla/homework11-project:1.0.0
+        docker run -d -p 8888:8080 grandhustla/homework11-project:1.0.0
+        '''
       }
     }
   }
