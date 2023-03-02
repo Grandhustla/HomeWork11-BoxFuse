@@ -1,0 +1,5 @@
+# Install container
+FROM ubuntu:18.04
+
+# Install maven and git for pipeline Jenkins
+RUN apt update && apt install git maven docker.io -y
