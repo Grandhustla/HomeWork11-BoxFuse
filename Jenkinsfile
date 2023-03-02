@@ -20,7 +20,7 @@ pipeline {
         }
 
         stage ('Create docker container with a .war file BoxFuse app') {
-            steps{
+            steps {
                 sh 'docker build -t grandhustla/homework11-project:1.0.0 -f Dockerfile .'
                 withDockerRegistry(credentialsId: 'dc7f7f41-892a-49ed-8064-50acb6f39fe9', url: 'https://index.docker.io/v1/') {
                     sh 'docker push grandhustla/homework11-project:1.0.0'
