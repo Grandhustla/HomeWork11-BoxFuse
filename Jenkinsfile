@@ -34,7 +34,7 @@ pipeline {
                 withDockerRegistry(credentialsId: 'dc7f7f41-892a-49ed-8064-50acb6f39fe9', url: 'https://index.docker.io/v1/') {
                     sh 'docker pull grandhustla/homework11-project:1.0.0'
                 }
-                sh 'docker run -d grandhustla/homework11-project'
+                sh 'docker run -d -p 8888:8080 grandhustla/homework11-project'
             }
         }
     }
